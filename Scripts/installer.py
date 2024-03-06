@@ -6,15 +6,6 @@ import os
 
 ## https://stackoverflow.com/questions/3041986/apt-command-line-interface-like-yes-no-input/3041990#3041990
 def query(question, default="yes"):
-    """Ask a yes/no question via raw_input() and return their answer.
-
-    "question" is a string that is presented to the user.
-    "default" is the presumed answer if the user just hits <Enter>.
-            It must be "yes" (the default), "no" or None (meaning
-            an answer is required of the user).
-
-    The "answer" return value is True for "yes" or False for "no".
-    """
     valid = {"yes": True, "y": True, "ye": True, "no": False, "n": False}
     if default is None:
         prompt = " [y/n] "
@@ -35,6 +26,12 @@ def query(question, default="yes"):
         else:
             sys.stdout.write("Please respond with 'yes' or 'no' " "(or 'y' or 'n').\n")
 
+## https://ask.replit.com/t/how-do-i-make-colored-text-in-python/29288/13
+def print_rgb(text, r, g, b):
+    color_code = f"\033[38;2;{r};{g};{b}m"
+    print(f"{color_code}{text}\033[0m")
+
+
 os.system("clear")
 logo = '''
 ----------------------------------------------------------------------------------------------------------
@@ -51,30 +48,36 @@ logo = '''
                                              Installer Script                                             
 '''
 
-print(logo + "\n\n\n Device Qualification Checks \n")
+print_rgb(logo + "\n\n\nDevice Qualification Checks \n", 158, 34, 230)
 
-print("Device Check Beginning!")
+print_rgb("Device Check Beginning! \n", 25 ,70, 255)
 
-if platform.machine != "aarch64" or platform.machine != "armv7l":
-    print("ARM Device Detected")
+
+if platform.machine == "aarch64" or platform.machine == "armv7l":
+    print_rgb("ARM Device Detected", 0, 255, 0)
 else:
-    print("ARM Device not Detected!")
-    print("DEVICE NOT QUALIFIED! PROGRAM WILL EXIT IN 5 SECONDS")
+    print_rgb("ARM Device not Detected!",255,20,20)
+    os.system("clear")
+    print_rgb(logo + "\n\n\nDevice Qualification FAILED: ARM NOT DETECTED \n", 255, 10, 10)
+    print_rgb("DEVICE NOT QUALIFIED! PROGRAM WILL EXIT IN 5 SECONDS",255,0,0)
     time.sleep(5)
     exit(0)
 print("\n")
 
-print("Checking OS!")
+print_rgb("Validating OS!", 34, 230, 86)
 
 if distro.name(pretty=True) == "Debian GNU/Linux 12 (bookworm)":
-     print("DEBIAN 12 Detected")
+     print_rgb("DEBIAN 12 Detected", 0,255,0)
 else:
-     print("DEBIAN 12 Not Detected!")
-     print("DEVICE NOT QUALIFIED! PROGRAM WILL EXIT IN 5 SECONDS")
+     os.system("clear")
+     print_rgb(logo + "\n\n\nDevice Qualification FAILED: DEBIAN 12 NOT DETECTED!\n", 255, 10, 10)
+     print_rgb("DEVICE NOT QUALIFIED! PROGRAM WILL EXIT IN 5 SECONDS",255,0,0)
      time.sleep(5)
      exit(0)
+
 print("\n")
-print("Device Qualified! Screen Clearing in 5 Seconds!")
+
+print_rgb("Device Qualified! Screen Clearing in 5 Seconds!", 0, 255, 0)
 time.sleep(1)
 print("4.")
 time.sleep(1)
@@ -85,4 +88,4 @@ time.sleep(1)
 print("CLEARING SCREEN")
 os.system("clear")
 
-print(logo + "\n\n\n Device Qualified! Installation Start!")
+print_rgb(logo + "\n\n\n Device Qualified! Installation Start!", 158, 34, 230)
