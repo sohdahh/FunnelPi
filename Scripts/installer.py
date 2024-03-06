@@ -1,6 +1,8 @@
 import sys
+import time
 import platform
 import distro
+import os
 
 ## https://stackoverflow.com/questions/3041986/apt-command-line-interface-like-yes-no-input/3041990#3041990
 def query(question, default="yes"):
@@ -33,7 +35,8 @@ def query(question, default="yes"):
         else:
             sys.stdout.write("Please respond with 'yes' or 'no' " "(or 'y' or 'n').\n")
 
-print('''
+os.system("clear")
+logo = '''
 ----------------------------------------------------------------------------------------------------------
 |                                                                                                        |
 | ______     __  __       ___   __       ___   __       ______       __           ______     ________    |
@@ -46,23 +49,40 @@ print('''
 |                                                                                                        |
 ----------------------------------------------------------------------------------------------------------
                                              Installer Script                                             
-''')
+'''
 
-print("\n\n\n This script will setup this device for use as a FunnelPi, aka a raspberry pi powered weather station ")
+print(logo + "\n\n\n Device Qualification Checks \n")
 
-if query("Begin the install?", default="yes") == False:
-    exit(0)
-
-print("\n")
-
-print("Checking Device!")
+print("Device Check Beginning!")
 
 if platform.machine != "aarch64" or platform.machine != "armv7l":
-    print("ARM Not Detected!")
+    print("ARM Device Detected")
+else:
+    print("ARM Device not Detected!")
+    print("DEVICE NOT QUALIFIED! PROGRAM WILL EXIT IN 5 SECONDS")
+    time.sleep(5)
     exit(0)
-
 print("\n")
 
 print("Checking OS!")
 
-print(distro.name(pretty=True))
+if distro.name(pretty=True) == "Debian GNU/Linux 12 (bookworm)":
+     print("DEBIAN 12 Detected")
+else:
+     print("DEBIAN 12 Not Detected!")
+     print("DEVICE NOT QUALIFIED! PROGRAM WILL EXIT IN 5 SECONDS")
+     time.sleep(5)
+     exit(0)
+print("\n")
+print("Device Qualified! Screen Clearing in 5 Seconds!")
+time.sleep(1)
+print("4.")
+time.sleep(1)
+print("3.")
+time.sleep(1)
+print("2.")
+time.sleep(1)
+print("CLEARING SCREEN")
+os.system("clear")
+
+print(logo + "\n\n\n Device Qualified! Installation Start!")
