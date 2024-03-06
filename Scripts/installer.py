@@ -88,4 +88,13 @@ time.sleep(1)
 print("CLEARING SCREEN")
 os.system("clear")
 
-print_rgb(logo + "\n\n\n Device Qualified! Installation Start!", 158, 34, 230)
+print_rgb(logo + "\n\n\nInstallation \n", 158, 34, 230)
+
+if query("Do you wish to begin installation?", default="yes") == False:
+    os.system("clear")
+    print_rgb(logo + "\n\n\n Install Manually Exited!\n", 255, 10, 10)
+    print_rgb("PROGRAM WILL EXIT IN 5 SECONDS",255,0,0)
+    time.sleep(5)
+    exit(0)
+print_rgb("\n Installation Beginning! Dependancies are now installing!", 255,255)
+## END POINT (Need to research on what items ill use to make the FunnelPi)
