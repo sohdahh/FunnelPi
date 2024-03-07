@@ -59,8 +59,7 @@ else:
     print_rgb("ARM Device not Detected!",255,20,20)
     os.system("clear")
     print_rgb(logo + "\n\n\nDevice Qualification FAILED: ARM NOT DETECTED \n", 255, 10, 10)
-    print_rgb("DEVICE NOT QUALIFIED! PROGRAM WILL EXIT IN 5 SECONDS",255,0,0)
-    time.sleep(5)
+    print_rgb("DEVICE NOT QUALIFIED!",255,0,0)
     exit(0)
 print("\n")
 
@@ -71,20 +70,13 @@ if distro.name(pretty=True) == "Debian GNU/Linux 12 (bookworm)":
 else:
      os.system("clear")
      print_rgb(logo + "\n\n\nDevice Qualification FAILED: DEBIAN 12 NOT DETECTED!\n", 255, 10, 10)
-     print_rgb("DEVICE NOT QUALIFIED! PROGRAM WILL EXIT IN 5 SECONDS",255,0,0)
-     time.sleep(5)
+     print_rgb("DEVICE NOT QUALIFIED!",255,0,0)
      exit(0)
 
 print("\n")
 
-print_rgb("Device Qualified! Screen Clearing in 5 Seconds!", 0, 255, 0)
-time.sleep(1)
-print("4.")
-time.sleep(1)
-print("3.")
-time.sleep(1)
-print("2.")
-time.sleep(1)
+print_rgb("Device Qualified!", 0, 255, 0)
+time.sleep(5)
 print("CLEARING SCREEN")
 os.system("clear")
 
@@ -93,8 +85,6 @@ print_rgb(logo + "\n\n\nInstallation \n", 158, 34, 230)
 if query("Do you wish to begin installation?", default="yes") == False:
     os.system("clear")
     print_rgb(logo + "\n\n\n Install Manually Exited!\n", 255, 10, 10)
-    print_rgb("PROGRAM WILL EXIT IN 5 SECONDS",255,0,0)
-    time.sleep(5)
     exit(0)
 print_rgb("\n Installation Beginning! Dependancies are now installing!", 255,255)
 ## END POINT (Need to research on what items ill use to make the FunnelPi)
