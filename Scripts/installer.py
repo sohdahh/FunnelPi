@@ -52,8 +52,7 @@ print_rgb(logo + "\n\n\nDevice Qualification Checks \n", 158, 34, 230)
 
 print_rgb("Device Check Beginning! \n", 25 ,70, 255)
 
-
-if platform.machine == "aarch64" or platform.machine == "armv7l":
+if platform.machine() == "aarch64" or platform.machine() == "armv1l":
     print_rgb("ARM Device Detected", 0, 255, 0)
 else:
     print_rgb("ARM Device not Detected!",255,20,20)
@@ -61,6 +60,7 @@ else:
     print_rgb(logo + "\n\n\nDevice Qualification FAILED: ARM NOT DETECTED \n", 255, 10, 10)
     print_rgb("DEVICE NOT QUALIFIED!",255,0,0)
     exit(0)
+
 print("\n")
 
 print_rgb("Validating OS!", 34, 230, 86)
@@ -86,5 +86,5 @@ if query("Do you wish to begin installation?", default="yes") == False:
     os.system("clear")
     print_rgb(logo + "\n\n\n Install Manually Exited!\n", 255, 10, 10)
     exit(0)
-print_rgb("\n Installation Beginning! Dependancies are now installing!", 255,255)
+print_rgb("\nInstallation Beginning! Dependancies are now installing!", 255,255,0)
 ## END POINT (Need to research on what items ill use to make the FunnelPi)
